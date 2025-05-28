@@ -1,0 +1,115 @@
+  <!-- Autor: Luis Alberto Castillo Herrera | Email: lacastilloh@poligran.edu.co -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TasksPro - Tareas</title>
+    <link rel="stylesheet" href="css/tareas.css" />
+    <!-- Autor: Luis Alberto Castillo Herrera | Email: lacastilloh@poligran.edu.co -->
+  </head>
+
+  <body>
+    <header>
+      <h1>TasksPro</h1>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="registro.html">Registro</a>
+        <a href="login.html">Login</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h2>Gestión de Tareas</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyTareas">
+          <!-- Aquí se inyectan las tareas dinámicamente -->
+        </tbody>
+      </table>
+
+      <!-- Formulario solo visible para Administrador -->
+      <form id="formTarea">
+        <h3>Agregar/Editar Tarea</h3>
+        <label for="titulo">Título</label>
+        <input type="text" id="titulo" required />
+
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" required></textarea>
+
+        <label for="estado">Estado</label>
+        <select id="estado">
+          <option>Pendiente</option>
+          <option>En proceso</option>
+          <option>Completada</option>
+        </select>
+
+        <button class="btn" type="submit">Guardar</button>
+      </form>
+    </div>
+
+    <footer><p>&copy; 2025 TasksPro</p></footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+      // Autor: Luis Alberto Castillo Herrera | Email: lacastilloh@poligran.edu.co
+
+      const user = obtenerUsuarioActual();
+      if (!user) {
+        window.location.href = "login.html";
+      }
+
+      const esAdmin = user.rol === "Administrador";
+
+      function renderTareas() {
+        const lista = document.getElementById("tbodyTareas");
+        lista.innerHTML = "";
+
+        obtenerTareas().forEach((tarea) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${tarea.titulo}</td>
+            <td>${tarea.descripcion}</td>
+            <td>${tarea.estado}</td>
+            <td>
+              ${
+                esAdmin
+                  ? `<button onclick="eliminarTarea(${tarea.id}); location.reload();">Eliminar</button>`
+                  : `<em>Solo lectura</em>`
+              }
+            </td>
+          `;
+          lista.appendChild(row);
+        });
+      }
+
+      // Mostrar u ocultar el formulario según el rol
+      if (!esAdmin) {
+        document.getElementById("formTarea").style.display = "none";
+      } else {
+        // Solo agregar evento si es admin
+        document.getElementById("formTarea").addEventListener("submit", function (e) {
+          e.preventDefault();
+          const titulo = document.getElementById("titulo").value;
+          const descripcion = document.getElementById("descripcion").value;
+          const estado = document.getElementById("estado").value;
+          agregarTarea(titulo, descripcion, estado);
+          renderTareas();
+          this.reset();
+        });
+      }
+
+      renderTareas();
+    </script>
+  </body>
+</html>

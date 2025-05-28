@@ -1,0 +1,1 @@
+// JS para el formulario de registro

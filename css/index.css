@@ -1,0 +1,54 @@
+/* Estilos para la página de inicio */
+/* Autor: Luis Alberto Castillo Herrera | Email: lacastilloh@poligran.edu.co   */
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #eef2f5;
+}
+header, footer {
+  background-color: #222;
+  color: white;
+  padding: 1em;
+  text-align: center;
+}
+nav a {
+  color: white;
+  margin: 0 1em;
+  text-decoration: none;
+}
+.container {
+  max-width: 800px;
+  margin: 2em auto;
+  padding: 2em;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.btn {
+  padding: 0.8em 1.5em;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1em;
+}
+.alerta {
+  margin-top: 1em;
+  padding: 0.8em;
+  border-radius: 5px;
+  display: none;
+  font-weight: bold;
+}
+.alerta.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+.alerta.exito {
+  background-color: #d4edda;
+  color: #155724;
+}

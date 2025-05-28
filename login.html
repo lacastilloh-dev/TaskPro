@@ -1,0 +1,54 @@
+  <!-- Autor: Luis Alberto Castillo Herrera | Email: lacastilloh@poligran.edu.co -->
+   
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TasksPro - Login</title>
+    <link rel="stylesheet" href="css/login.css">
+  </head>
+
+  <body>
+    <header>
+      <h1>TasksPro</h1>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="registro.html">Registro</a>
+        <a href="login.html">Login</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h2>Iniciar Sesión</h2>
+      <form id="formLogin">
+        <label>Email</label>
+        <input type="email" id="email" required />
+      
+        <label>Contraseña</label>
+        <input type="password" id="password" required />
+      
+        <button type="submit" class="btn">Entrar</button>
+      </form>
+    </div>
+
+    <footer><p>&copy; 2025 TasksPro</p></footer>
+    
+    <!-- Java Script codigo-->
+    <script src="js/script.js"></script>
+    <script>
+      document
+        .getElementById("formLogin")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const user = loginUsuario(email, password);
+          if (user) {
+            window.location.href = "dashboard.html";
+          }
+        });
+    </script>
+  </body>
+</html>

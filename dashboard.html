@@ -1,0 +1,59 @@
+  <!-- Autor: Luis Alberto Castillo Herrera | Email: lacastilloh@poligran.edu.co -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TasksPro - Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <!-- Autor: Luis Alberto Castillo Herrera | Email: lacastilloh@poligran.edu.co -->
+  </head>
+  <body>
+    <header>
+      <h1>TasksPro</h1>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="registro.html">Registro</a>
+        <a href="login.html">Login</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h2>Bienvenido, <span id="nombreUsuario"></span></h2>
+      <p>Has iniciado sesión como <strong id="rolUsuario"></strong>.</p>
+    
+      <!-- Mostrar siempre este botón -->
+      <a id="btnGestion" class="btn" href="tareas.html">Gestión de Tareas</a>
+    
+      <a class="btn" style="background-color: #dc3545" href="#" onclick="cerrarSesion()">Cerrar Sesión</a>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 TasksPro</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+      // Autor: Luis Alberto Castillo Herrera | Email: lacastilloh@poligran.edu.co
+    
+      document.addEventListener("DOMContentLoaded", function () {
+        const user = obtenerUsuarioActual();
+    
+        if (!user) {
+          window.location.href = "login.html";
+          return;
+        }
+    
+        // Mostrar nombre y rol reales
+        document.getElementById("nombreUsuario").innerText = user.nombre;
+        document.getElementById("rolUsuario").innerText = user.rol;
+    
+        // TODOS los usuarios pueden acceder a la vista de tareas
+        // Solo que los Visualizadores tendrán acceso limitado allí
+      });
+    </script>
+
+
+  </body>
+</html>

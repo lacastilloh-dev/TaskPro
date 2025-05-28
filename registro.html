@@ -1,0 +1,66 @@
+  <!-- Autor: Luis Alberto Castillo Herrera | Email: lacastilloh@poligran.edu.co -->
+   
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TasksPro - Registro</title>
+    <link rel="stylesheet" href="css/registro.css">
+  </head>
+  <body>
+    <header>
+      <h1>TasksPro</h1>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="registro.html">Registro</a>
+        <a href="login.html">Login</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h2>Registro</h2>
+
+      <form id="formRegistro">
+        <label>Nombre</label>
+        <input type="text" id="nombre" />
+      
+        <label>Email</label>
+        <input type="email" id="email" />
+      
+        <label>Contraseña</label>
+        <input type="password" id="password" />
+      
+        <label>Rol</label>
+        <select id="rol">
+          <option>Administrador</option>
+          <option>Visualizador</option>
+        </select>
+      
+        <button class="btn">Registrarse</button>
+      </form>
+
+    </div>
+    <footer><p>&copy; 2025 TasksPro</p></footer>
+
+    <!-- Java Script -->
+    <script src="js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("formRegistro")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+            const nombre = document.getElementById("nombre").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const rol = document.getElementById("rol").value;
+            if (registrarUsuario(nombre, email, password, rol)) {
+              window.location.href = "login.html";
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
